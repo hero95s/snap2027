@@ -1,0 +1,1513 @@
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Snap Streak Tracker</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Tahoma, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      padding: 25px;
+      color: #fff;
+
+      background:
+        radial-gradient(
+          circle at top right,
+          #29294a,
+          transparent 35%
+        ),
+        radial-gradient(
+          circle at bottom left,
+          #15152c,
+          transparent 40%
+        ),
+        #080812;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .logo {
+      font-size: 55px;
+      margin-bottom: 10px;
+    }
+
+    header h1 {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: #aaa;
+      font-size: 15px;
+    }
+
+    /* =========================
+       CARD
+    ========================= */
+
+    .card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 22px;
+      padding: 22px;
+      margin-bottom: 20px;
+
+      backdrop-filter: blur(15px);
+
+      box-shadow:
+        0 15px 40px rgba(0, 0, 0, .25);
+    }
+
+    /* =========================
+       INPUTS
+    ========================= */
+
+    .inputs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #bbb;
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+
+      border-radius: 14px;
+      border: 1px solid #333;
+
+      background: #11111d;
+      color: white;
+
+      outline: none;
+
+      font-size: 18px;
+
+      transition: .2s;
+    }
+
+    input:focus {
+      border-color: #ffcc00;
+
+      box-shadow:
+        0 0 0 3px rgba(255, 204, 0, .1);
+    }
+
+    /* =========================
+       BUTTONS
+    ========================= */
+
+    button {
+      border: none;
+      cursor: pointer;
+
+      border-radius: 14px;
+
+      padding: 13px 18px;
+
+      font-size: 15px;
+      font-weight: bold;
+
+      transition: .2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+    }
+
+    .primary-btn {
+      width: 100%;
+
+      margin-top: 15px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ffcc00,
+          #ff9500
+        );
+
+      color: #111;
+    }
+
+    .danger-btn {
+      background: rgba(255, 70, 70, .12);
+      color: #ff6666;
+
+      padding: 8px 12px;
+
+      font-size: 12px;
+    }
+
+    .clear-btn {
+      background: rgba(255, 70, 70, .12);
+      color: #ff6666;
+
+      padding: 9px 13px;
+
+      font-size: 13px;
+    }
+
+    /* =========================
+       MESSAGE
+    ========================= */
+
+    .message {
+      margin-top: 12px;
+
+      text-align: center;
+
+      font-size: 14px;
+
+      min-height: 20px;
+    }
+
+    /* =========================
+       STATS
+    ========================= */
+
+    .stats {
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 15px;
+
+      margin-bottom: 20px;
+    }
+
+    .stat {
+      background: rgba(255, 255, 255, .05);
+
+      border-radius: 18px;
+
+      padding: 20px;
+
+      text-align: center;
+
+      border:
+        1px solid
+        rgba(255, 255, 255, .07);
+    }
+
+    .stat .icon {
+      font-size: 25px;
+
+      margin-bottom: 8px;
+    }
+
+    .stat .title {
+      color: #999;
+
+      font-size: 13px;
+
+      margin-bottom: 7px;
+    }
+
+    .stat .value {
+      font-size: 25px;
+
+      font-weight: bold;
+    }
+
+    .increase {
+      color: #36e38a;
+    }
+
+    .remaining {
+      color: #ffcc00;
+    }
+
+    /* =========================
+       PROGRESS
+    ========================= */
+
+    .progress-info {
+      display: flex;
+
+      justify-content:
+        space-between;
+
+      color: #aaa;
+
+      font-size: 14px;
+
+      margin-bottom: 8px;
+    }
+
+    .progress {
+      height: 15px;
+
+      background: #151522;
+
+      border-radius: 20px;
+
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+
+      width: 0%;
+
+      background:
+        linear-gradient(
+          90deg,
+          #ff9500,
+          #ffcc00
+        );
+
+      border-radius: 20px;
+
+      transition:
+        width .5s ease;
+    }
+
+    /* =========================
+       SECTION TITLE
+    ========================= */
+
+    .section-title {
+      display: flex;
+
+      justify-content:
+        space-between;
+
+      align-items: center;
+
+      margin-bottom: 18px;
+    }
+
+    .section-title h2 {
+      font-size: 20px;
+    }
+
+    /* =========================
+       HISTORY
+    ========================= */
+
+    .history {
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 10px;
+    }
+
+    .history-header {
+      display: grid;
+
+      grid-template-columns:
+        1.3fr
+        1fr
+        1fr
+        1fr
+        70px;
+
+      gap: 10px;
+
+      color: #777;
+
+      font-size: 12px;
+
+      padding:
+        0 15px
+        5px;
+    }
+
+    .history-item {
+      display: grid;
+
+      grid-template-columns:
+        1.3fr
+        1fr
+        1fr
+        1fr
+        70px;
+
+      align-items: center;
+
+      gap: 10px;
+
+      background:
+        rgba(255, 255, 255, .04);
+
+      border-radius: 15px;
+
+      padding: 15px;
+
+      border:
+        1px solid
+        rgba(255, 255, 255, .05);
+    }
+
+    .history-value {
+      font-weight: bold;
+    }
+
+    .history-increase {
+      color: #36e38a;
+
+      font-weight: bold;
+    }
+
+    .history-time {
+      color: #aaa;
+
+      font-size: 13px;
+    }
+
+    .empty {
+      text-align: center;
+
+      padding: 35px;
+
+      color: #777;
+    }
+
+    /* =========================
+       RESET
+    ========================= */
+
+    .reset-area {
+      text-align: center;
+
+      margin-top: 20px;
+    }
+
+    .reset-btn {
+      background: transparent;
+
+      color: #777;
+
+      font-size: 13px;
+    }
+
+    .reset-btn:hover {
+      color: #ff5555;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 800px) {
+
+      body {
+        padding: 15px;
+      }
+
+      .inputs {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns:
+          1fr 1fr;
+      }
+
+      .history-header {
+        display: none;
+      }
+
+      .history-item {
+        grid-template-columns:
+          1fr 1fr;
+
+        gap: 12px;
+      }
+
+      .history-item > div {
+        padding: 4px;
+      }
+
+      .delete-cell {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 450px) {
+
+      header h1 {
+        font-size: 25px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .history-item {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <header>
+
+    <div class="logo">
+      🔥
+    </div>
+
+    <h1>
+      Snap Streak Tracker
+    </h1>
+
+    <p>
+      تابع تطور الستريك واحسب كل زيادة
+    </p>
+
+  </header>
+
+
+  <!-- =========================
+       INPUT CARD
+  ========================== -->
+
+  <div class="card">
+
+    <div class="inputs">
+
+      <div class="input-group">
+
+        <label>
+          🎯 الهدف النهائي
+        </label>
+
+        <input
+          type="number"
+          id="targetInput"
+          placeholder="مثلاً 50000"
+          min="1"
+        >
+
+      </div>
+
+
+      <div class="input-group">
+
+        <label>
+          🔥 الستريك الحالي
+        </label>
+
+        <input
+          type="number"
+          id="currentInput"
+          placeholder="مثلاً 20000"
+          min="0"
+        >
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="primary-btn"
+      onclick="updateStreak()"
+    >
+      إضافة تحديث
+    </button>
+
+
+    <div
+      id="message"
+      class="message"
+    ></div>
+
+  </div>
+
+
+  <!-- =========================
+       STATS
+  ========================== -->
+
+  <div class="stats">
+
+    <div class="stat">
+
+      <div class="icon">
+        🔥
+      </div>
+
+      <div class="title">
+        الستريك الحالي
+      </div>
+
+      <div
+        class="value"
+        id="currentValue"
+      >
+        0
+      </div>
+
+    </div>
+
+
+    <div class="stat">
+
+      <div class="icon">
+        📈
+      </div>
+
+      <div class="title">
+        آخر زيادة
+      </div>
+
+      <div
+        class="value increase"
+        id="lastIncrease"
+      >
+        0
+      </div>
+
+    </div>
+
+
+    <div class="stat">
+
+      <div class="icon">
+        🎯
+      </div>
+
+      <div class="title">
+        المتبقي للهدف
+      </div>
+
+      <div
+        class="value remaining"
+        id="remainingValue"
+      >
+        0
+      </div>
+
+    </div>
+
+
+    <div class="stat">
+
+      <div class="icon">
+        📊
+      </div>
+
+      <div class="title">
+        إجمالي الزيادة
+      </div>
+
+      <div
+        class="value increase"
+        id="totalIncrease"
+      >
+        0
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       PROGRESS
+  ========================== -->
+
+  <div class="card">
+
+    <div class="progress-info">
+
+      <span>
+        التقدم نحو الهدف
+      </span>
+
+      <span id="progressPercent">
+        0%
+      </span>
+
+    </div>
+
+
+    <div class="progress">
+
+      <div
+        class="progress-bar"
+        id="progressBar"
+      ></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       HISTORY
+  ========================== -->
+
+  <div class="card">
+
+    <div class="section-title">
+
+      <h2>
+        📋 سجل الزيادات
+      </h2>
+
+      <button
+        class="clear-btn"
+        onclick="clearHistory()"
+      >
+        مسح السجل
+      </button>
+
+    </div>
+
+
+    <div class="history">
+
+      <!-- عنوان الجدول -->
+
+      <div class="history-header">
+
+        <div>
+          التغيير
+        </div>
+
+        <div>
+          الرقم الجديد
+        </div>
+
+        <div>
+          الزيادة
+        </div>
+
+        <div>
+          الوقت
+        </div>
+
+        <div>
+          حذف
+        </div>
+
+      </div>
+
+
+      <div id="historyList"></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       RESET
+  ========================== -->
+
+  <div class="reset-area">
+
+    <button
+      class="reset-btn"
+      onclick="resetAll()"
+    >
+      إعادة ضبط النظام بالكامل
+    </button>
+
+  </div>
+
+</div>
+
+
+<script>
+
+  /* =================================
+     DATA
+  ================================= */
+
+  let data =
+    JSON.parse(
+      localStorage.getItem(
+        "snapStreakData"
+      )
+    )
+    ||
+    {
+      target: 0,
+      current: 0,
+      startingValue: 0,
+      totalIncrease: 0,
+      history: []
+    };
+
+
+  /* =================================
+     FORMAT NUMBER
+  ================================= */
+
+  function formatNumber(number) {
+
+    return Number(number)
+      .toLocaleString("en-US");
+
+  }
+
+
+  /* =================================
+     SAVE DATA
+  ================================= */
+
+  function saveData() {
+
+    localStorage.setItem(
+      "snapStreakData",
+      JSON.stringify(data)
+    );
+
+  }
+
+
+  /* =================================
+     RENDER
+  ================================= */
+
+  function render() {
+
+    document.getElementById(
+      "targetInput"
+    ).value =
+      data.target || "";
+
+
+    document.getElementById(
+      "currentInput"
+    ).value =
+      data.current || "";
+
+
+    document.getElementById(
+      "currentValue"
+    ).textContent =
+      formatNumber(data.current);
+
+
+    /*
+      آخر زيادة فقط
+    */
+
+    const lastIncrease =
+      data.history.length > 1
+        ? data.history[0].increase
+        : 0;
+
+
+    document.getElementById(
+      "lastIncrease"
+    ).textContent =
+      lastIncrease > 0
+        ? "+" + formatNumber(lastIncrease)
+        : "0";
+
+
+    /*
+      المتبقي
+    */
+
+    const remaining =
+      Math.max(
+        data.target - data.current,
+        0
+      );
+
+
+    document.getElementById(
+      "remainingValue"
+    ).textContent =
+      formatNumber(remaining);
+
+
+    /*
+      إجمالي الزيادة
+    */
+
+    document.getElementById(
+      "totalIncrease"
+    ).textContent =
+      "+" +
+      formatNumber(
+        data.totalIncrease
+      );
+
+
+    /*
+      نسبة التقدم
+    */
+
+    let percentage = 0;
+
+
+    if (data.target > 0) {
+
+      percentage =
+        (
+          data.current /
+          data.target
+        ) * 100;
+
+    }
+
+
+    percentage =
+      Math.min(
+        percentage,
+        100
+      );
+
+
+    document.getElementById(
+      "progressPercent"
+    ).textContent =
+      percentage.toFixed(1) + "%";
+
+
+    document.getElementById(
+      "progressBar"
+    ).style.width =
+      percentage + "%";
+
+
+    renderHistory();
+
+    saveData();
+
+  }
+
+
+  /* =================================
+     ADD UPDATE
+  ================================= */
+
+  function updateStreak() {
+
+    const target =
+      Number(
+        document.getElementById(
+          "targetInput"
+        ).value
+      );
+
+
+    const newValue =
+      Number(
+        document.getElementById(
+          "currentInput"
+        ).value
+      );
+
+
+    const message =
+      document.getElementById(
+        "message"
+      );
+
+
+    /*
+      تحقق من الهدف
+    */
+
+    if (!target || target <= 0) {
+
+      showMessage(
+        "⚠️ اكتب الهدف أولاً",
+        "#ff6666"
+      );
+
+      return;
+
+    }
+
+
+    /*
+      تحقق من الرقم
+    */
+
+    if (
+      isNaN(newValue) ||
+      newValue < 0
+    ) {
+
+      showMessage(
+        "⚠️ أدخل رقم صحيح",
+        "#ff6666"
+      );
+
+      return;
+
+    }
+
+
+    /*
+      أول تسجيل
+    */
+
+    if (
+      data.history.length === 0
+    ) {
+
+      data.target =
+        target;
+
+      data.current =
+        newValue;
+
+      data.startingValue =
+        newValue;
+
+      data.totalIncrease =
+        0;
+
+
+      data.history.unshift({
+
+        previous: 0,
+
+        current: newValue,
+
+        increase: 0,
+
+        date:
+          new Date()
+            .toISOString(),
+
+        first: true
+
+      });
+
+    }
+
+    /*
+      تحديث جديد
+    */
+
+    else {
+
+      const previous =
+        data.current;
+
+
+      const increase =
+        newValue -
+        previous;
+
+
+      /*
+        لا يسمح بالنقصان
+      */
+
+      if (increase < 0) {
+
+        showMessage(
+          "⚠️ الرقم الجديد أقل من الستريك السابق",
+          "#ff6666"
+        );
+
+        return;
+
+      }
+
+
+      data.target =
+        target;
+
+      data.current =
+        newValue;
+
+
+      data.totalIncrease +=
+        increase;
+
+
+      data.history.unshift({
+
+        previous:
+          previous,
+
+        current:
+          newValue,
+
+        increase:
+          increase,
+
+        date:
+          new Date()
+            .toISOString(),
+
+        first:
+          false
+
+      });
+
+    }
+
+
+    showMessage(
+      "✅ تم تسجيل التحديث بنجاح",
+      "#36e38a"
+    );
+
+
+    render();
+
+
+    setTimeout(
+      () => {
+        message.textContent = "";
+      },
+      2500
+    );
+
+  }
+
+
+  /* =================================
+     MESSAGE
+  ================================= */
+
+  function showMessage(
+    text,
+    color
+  ) {
+
+    const message =
+      document.getElementById(
+        "message"
+      );
+
+
+    message.textContent =
+      text;
+
+    message.style.color =
+      color;
+
+  }
+
+
+  /* =================================
+     RENDER HISTORY
+  ================================= */
+
+  function renderHistory() {
+
+    const list =
+      document.getElementById(
+        "historyList"
+      );
+
+
+    if (
+      data.history.length === 0
+    ) {
+
+      list.innerHTML = `
+        <div class="empty">
+          لا توجد تحديثات حتى الآن 🔥
+        </div>
+      `;
+
+      return;
+
+    }
+
+
+    list.innerHTML =
+      data.history
+        .map(
+          (item, index) => {
+
+            const date =
+              new Date(
+                item.date
+              );
+
+
+            const formattedDate =
+              date.toLocaleDateString(
+                "ar-IQ"
+              );
+
+
+            const formattedTime =
+              date.toLocaleTimeString(
+                "ar-IQ",
+                {
+                  hour: "2-digit",
+                  minute: "2-digit"
+                }
+              );
+
+
+            return `
+
+              <div
+                class="history-item"
+              >
+
+                <div
+                  class="history-value"
+                >
+                  ${
+                    formatNumber(
+                      item.previous
+                    )
+                  }
+
+                  →
+
+                  ${
+                    formatNumber(
+                      item.current
+                    )
+                  }
+                </div>
+
+
+                <div>
+                  ${
+                    formatNumber(
+                      item.current
+                    )
+                  }
+                </div>
+
+
+                <div
+                  class="history-increase"
+                >
+                  ${
+                    item.first
+                      ? "البداية"
+                      : "+" +
+                        formatNumber(
+                          item.increase
+                        )
+                  }
+                </div>
+
+
+                <div
+                  class="history-time"
+                >
+                  ${
+                    formattedDate
+                  }
+
+                  <br>
+
+                  ${
+                    formattedTime
+                  }
+                </div>
+
+
+                <!--
+                  زر حذف هذا السجل فقط
+                -->
+
+                <div
+                  class="delete-cell"
+                >
+
+                  <button
+                    class="danger-btn"
+                    onclick="deleteHistory(${index})"
+                  >
+                    🗑️ حذف
+                  </button>
+
+                </div>
+
+              </div>
+
+            `;
+
+          }
+        )
+        .join("");
+
+  }
+
+
+  /* =================================
+     DELETE ONE HISTORY ITEM
+  ================================= */
+
+  function deleteHistory(index) {
+
+    /*
+      تأكد أن السجل موجود
+    */
+
+    if (
+      !data.history[index]
+    ) {
+      return;
+    }
+
+
+    const item =
+      data.history[index];
+
+
+    /*
+      تأكيد الحذف
+    */
+
+    const confirmed =
+      confirm(
+        `حذف هذه الزيادة؟\n\n` +
+        `${formatNumber(item.previous)}` +
+        ` → ` +
+        `${formatNumber(item.current)}`
+      );
+
+
+    if (!confirmed) {
+      return;
+    }
+
+
+    /*
+      إذا كان السجل المحذوف
+      عملية زيادة فعلية،
+      نطرح زيادته من الإجمالي.
+    */
+
+    if (!item.first) {
+
+      data.totalIncrease -=
+        item.increase;
+
+    }
+
+
+    /*
+      منع الإجمالي من النزول
+      تحت الصفر
+    */
+
+    if (
+      data.totalIncrease < 0
+    ) {
+
+      data.totalIncrease = 0;
+
+    }
+
+
+    /*
+      حذف العنصر المحدد فقط
+    */
+
+    data.history.splice(
+      index,
+      1
+    );
+
+
+    /*
+      تحديث الستريك الحالي
+      بناءً على آخر سجل موجود
+    */
+
+    if (
+      data.history.length > 0
+    ) {
+
+      data.current =
+        data.history[0].current;
+
+    }
+
+    else {
+
+      data.current = 0;
+
+      data.startingValue = 0;
+
+    }
+
+
+    /*
+      إعادة حساب إجمالي الزيادات
+      من السجل نفسه للتأكد
+    */
+
+    recalculateTotal();
+
+
+    /*
+      إعادة الرسم والحفظ
+    */
+
+    render();
+
+
+    showMessage(
+      "🗑️ تم حذف السجل المحدد",
+      "#36e38a"
+    );
+
+  }
+
+
+  /* =================================
+     RECALCULATE TOTAL
+  ================================= */
+
+  function recalculateTotal() {
+
+    let total = 0;
+
+
+    data.history.forEach(
+      item => {
+
+        if (!item.first) {
+
+          total +=
+            Number(
+              item.increase
+            );
+
+        }
+
+      }
+    );
+
+
+    data.totalIncrease =
+      total;
+
+  }
+
+
+  /* =================================
+     CLEAR ALL HISTORY
+  ================================= */
+
+  function clearHistory() {
+
+    const confirmed =
+      confirm(
+        "هل أنت متأكد من حذف سجل الزيادات بالكامل؟"
+      );
+
+
+    if (!confirmed) {
+      return;
+    }
+
+
+    data.history = [];
+
+    data.totalIncrease = 0;
+
+    data.current = 0;
+
+    data.startingValue = 0;
+
+
+    render();
+
+  }
+
+
+  /* =================================
+     RESET EVERYTHING
+  ================================= */
+
+  function resetAll() {
+
+    const confirmed =
+      confirm(
+        "سيتم حذف كل البيانات وإعادة النظام من البداية. هل أنت متأكد؟"
+      );
+
+
+    if (!confirmed) {
+      return;
+    }
+
+
+    data = {
+
+      target: 0,
+
+      current: 0,
+
+      startingValue: 0,
+
+      totalIncrease: 0,
+
+      history: []
+
+    };
+
+
+    localStorage.removeItem(
+      "snapStreakData"
+    );
+
+
+    render();
+
+  }
+
+
+  /* =================================
+     INITIAL LOAD
+  ================================= */
+
+  render();
+
+</script>
+
+</body>
+</html>
+```
+
