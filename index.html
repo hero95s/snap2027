@@ -1,111 +1,174 @@
 ```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Snap Streak Tracker</title>
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    Snap Streak Tracker
+  </title>
+
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: Arial, Tahoma, sans-serif;
+
+      font-family:
+        Arial,
+        Tahoma,
+        sans-serif;
     }
 
+
     body {
+
       min-height: 100vh;
+
       padding: 25px;
-      color: #fff;
+
+      color: white;
 
       background:
+
         radial-gradient(
           circle at top right,
           #29294a,
           transparent 35%
         ),
+
         radial-gradient(
           circle at bottom left,
           #15152c,
           transparent 40%
         ),
+
         #080812;
     }
 
+
     .container {
+
       width: 100%;
-      max-width: 1000px;
+
+      max-width: 1050px;
+
       margin: auto;
     }
 
+
     /* =========================
        HEADER
-    ========================= */
+    ========================== */
 
     header {
+
       text-align: center;
+
       margin-bottom: 30px;
     }
 
+
     .logo {
+
       font-size: 55px;
+
       margin-bottom: 10px;
     }
 
+
     header h1 {
+
       font-size: 32px;
+
       margin-bottom: 8px;
     }
 
+
     header p {
+
       color: #aaa;
+
       font-size: 15px;
     }
 
+
     /* =========================
        CARD
-    ========================= */
+    ========================== */
 
     .card {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+
+      background:
+        rgba(255,255,255,.06);
+
+      border:
+        1px solid
+        rgba(255,255,255,.1);
+
       border-radius: 22px;
+
       padding: 22px;
+
       margin-bottom: 20px;
 
       backdrop-filter: blur(15px);
 
       box-shadow:
-        0 15px 40px rgba(0, 0, 0, .25);
+        0 15px 40px
+        rgba(0,0,0,.25);
     }
+
 
     /* =========================
        INPUTS
-    ========================= */
+    ========================== */
 
     .inputs {
+
       display: grid;
-      grid-template-columns: 1fr 1fr;
+
+      grid-template-columns:
+        1fr 1fr;
+
       gap: 15px;
     }
 
+
     .input-group label {
+
       display: block;
+
       margin-bottom: 8px;
+
       color: #bbb;
+
       font-size: 14px;
     }
 
+
     input {
+
       width: 100%;
+
       padding: 15px;
 
       border-radius: 14px;
-      border: 1px solid #333;
+
+      border:
+        1px solid #333;
 
       background: #11111d;
+
       color: white;
 
       outline: none;
@@ -115,37 +178,53 @@
       transition: .2s;
     }
 
+
     input:focus {
-      border-color: #ffcc00;
+
+      border-color:
+        #ffcc00;
 
       box-shadow:
-        0 0 0 3px rgba(255, 204, 0, .1);
+        0 0 0 3px
+        rgba(255,204,0,.1);
     }
+
 
     /* =========================
        BUTTONS
-    ========================= */
+    ========================== */
 
     button {
+
       border: none;
+
       cursor: pointer;
 
       border-radius: 14px;
 
-      padding: 13px 18px;
+      padding:
+        13px 18px;
 
       font-size: 15px;
+
       font-weight: bold;
 
       transition: .2s;
     }
 
+
     button:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.08);
+
+      transform:
+        translateY(-2px);
+
+      filter:
+        brightness(1.08);
     }
 
+
     .primary-btn {
+
       width: 100%;
 
       margin-top: 15px;
@@ -160,29 +239,41 @@
       color: #111;
     }
 
+
     .danger-btn {
-      background: rgba(255, 70, 70, .12);
+
+      background:
+        rgba(255,70,70,.12);
+
       color: #ff6666;
 
-      padding: 8px 12px;
+      padding:
+        8px 12px;
 
       font-size: 12px;
     }
 
+
     .clear-btn {
-      background: rgba(255, 70, 70, .12);
+
+      background:
+        rgba(255,70,70,.12);
+
       color: #ff6666;
 
-      padding: 9px 13px;
+      padding:
+        9px 13px;
 
       font-size: 13px;
     }
 
+
     /* =========================
        MESSAGE
-    ========================= */
+    ========================== */
 
     .message {
+
       margin-top: 12px;
 
       text-align: center;
@@ -192,23 +283,28 @@
       min-height: 20px;
     }
 
+
     /* =========================
        STATS
-    ========================= */
+    ========================== */
 
     .stats {
+
       display: grid;
 
       grid-template-columns:
-        repeat(4, 1fr);
+        repeat(4,1fr);
 
       gap: 15px;
 
       margin-bottom: 20px;
     }
 
+
     .stat {
-      background: rgba(255, 255, 255, .05);
+
+      background:
+        rgba(255,255,255,.05);
 
       border-radius: 18px;
 
@@ -218,16 +314,20 @@
 
       border:
         1px solid
-        rgba(255, 255, 255, .07);
+        rgba(255,255,255,.07);
     }
 
+
     .stat .icon {
+
       font-size: 25px;
 
       margin-bottom: 8px;
     }
 
+
     .stat .title {
+
       color: #999;
 
       font-size: 13px;
@@ -235,25 +335,35 @@
       margin-bottom: 7px;
     }
 
+
     .stat .value {
+
       font-size: 25px;
 
       font-weight: bold;
     }
 
+
     .increase {
-      color: #36e38a;
+
+      color:
+        #36e38a;
     }
 
+
     .remaining {
-      color: #ffcc00;
+
+      color:
+        #ffcc00;
     }
+
 
     /* =========================
        PROGRESS
-    ========================= */
+    ========================== */
 
     .progress-info {
+
       display: flex;
 
       justify-content:
@@ -266,17 +376,22 @@
       margin-bottom: 8px;
     }
 
+
     .progress {
+
       height: 15px;
 
-      background: #151522;
+      background:
+        #151522;
 
       border-radius: 20px;
 
       overflow: hidden;
     }
 
+
     .progress-bar {
+
       height: 100%;
 
       width: 0%;
@@ -294,11 +409,13 @@
         width .5s ease;
     }
 
+
     /* =========================
        SECTION TITLE
-    ========================= */
+    ========================== */
 
     .section-title {
+
       display: flex;
 
       justify-content:
@@ -309,15 +426,108 @@
       margin-bottom: 18px;
     }
 
+
     .section-title h2 {
+
       font-size: 20px;
     }
 
+
+    /* =========================
+       DAILY TOTALS
+    ========================== */
+
+    .days-list {
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 12px;
+    }
+
+
+    .day-item {
+
+      display: grid;
+
+      grid-template-columns:
+        1fr
+        1fr
+        1fr;
+
+      align-items: center;
+
+      gap: 15px;
+
+      background:
+        rgba(255,255,255,.04);
+
+      border:
+        1px solid
+        rgba(255,255,255,.05);
+
+      border-radius: 17px;
+
+      padding: 18px;
+    }
+
+
+    .day-date {
+
+      font-weight: bold;
+
+      font-size: 16px;
+    }
+
+
+    .day-label {
+
+      color: #888;
+
+      font-size: 12px;
+
+      margin-bottom: 5px;
+    }
+
+
+    .day-value {
+
+      color:
+        #36e38a;
+
+      font-size: 23px;
+
+      font-weight: bold;
+    }
+
+
+    .day-updates {
+
+      color: #aaa;
+
+      font-size: 13px;
+
+      text-align: left;
+    }
+
+
+    .empty {
+
+      text-align: center;
+
+      padding: 35px;
+
+      color: #777;
+    }
+
+
     /* =========================
        HISTORY
-    ========================= */
+    ========================== */
 
     .history {
+
       display: flex;
 
       flex-direction: column;
@@ -325,7 +535,9 @@
       gap: 10px;
     }
 
+
     .history-header {
+
       display: grid;
 
       grid-template-columns:
@@ -342,11 +554,12 @@
       font-size: 12px;
 
       padding:
-        0 15px
-        5px;
+        0 15px 5px;
     }
 
+
     .history-item {
+
       display: grid;
 
       grid-template-columns:
@@ -361,7 +574,7 @@
       gap: 10px;
 
       background:
-        rgba(255, 255, 255, .04);
+        rgba(255,255,255,.04);
 
       border-radius: 15px;
 
@@ -369,44 +582,47 @@
 
       border:
         1px solid
-        rgba(255, 255, 255, .05);
+        rgba(255,255,255,.05);
     }
+
 
     .history-value {
+
       font-weight: bold;
     }
+
 
     .history-increase {
-      color: #36e38a;
+
+      color:
+        #36e38a;
 
       font-weight: bold;
     }
 
+
     .history-time {
+
       color: #aaa;
 
       font-size: 13px;
     }
 
-    .empty {
-      text-align: center;
-
-      padding: 35px;
-
-      color: #777;
-    }
 
     /* =========================
        RESET
-    ========================= */
+    ========================== */
 
     .reset-area {
+
       text-align: center;
 
       margin-top: 20px;
     }
 
+
     .reset-btn {
+
       background: transparent;
 
       color: #777;
@@ -414,70 +630,103 @@
       font-size: 13px;
     }
 
+
     .reset-btn:hover {
-      color: #ff5555;
+
+      color:
+        #ff5555;
     }
+
 
     /* =========================
        MOBILE
-    ========================= */
+    ========================== */
 
-    @media (max-width: 800px) {
+    @media(max-width:800px) {
 
       body {
+
         padding: 15px;
       }
 
+
       .inputs {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+          1fr;
       }
 
+
       .stats {
+
         grid-template-columns:
           1fr 1fr;
       }
 
+
       .history-header {
+
         display: none;
       }
 
+
       .history-item {
+
         grid-template-columns:
           1fr 1fr;
 
         gap: 12px;
       }
 
-      .history-item > div {
-        padding: 4px;
+
+      .day-item {
+
+        grid-template-columns:
+          1fr 1fr;
       }
 
-      .delete-cell {
-        text-align: left;
+
+      .day-updates {
+
+        text-align: right;
       }
+
     }
 
-    @media (max-width: 450px) {
+
+    @media(max-width:450px) {
 
       header h1 {
+
         font-size: 25px;
       }
 
+
       .stats {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+          1fr;
       }
 
-      .history-item {
-        grid-template-columns: 1fr 1fr;
+
+      .day-item {
+
+        grid-template-columns:
+          1fr;
       }
+
     }
 
   </style>
+
 </head>
+
 
 <body>
 
+
 <div class="container">
+
 
   <!-- =========================
        HEADER
@@ -489,24 +738,28 @@
       🔥
     </div>
 
+
     <h1>
       Snap Streak Tracker
     </h1>
 
+
     <p>
-      تابع تطور الستريك واحسب كل زيادة
+      تابع الستريك واعرف شكد زاد كل يوم
     </p>
 
   </header>
 
 
+
   <!-- =========================
-       INPUT CARD
+       INPUT
   ========================== -->
 
   <div class="card">
 
     <div class="inputs">
+
 
       <div class="input-group">
 
@@ -522,6 +775,7 @@
         >
 
       </div>
+
 
 
       <div class="input-group">
@@ -546,7 +800,9 @@
       class="primary-btn"
       onclick="updateStreak()"
     >
+
       إضافة تحديث
+
     </button>
 
 
@@ -558,11 +814,13 @@
   </div>
 
 
+
   <!-- =========================
        STATS
   ========================== -->
 
   <div class="stats">
+
 
     <div class="stat">
 
@@ -582,6 +840,7 @@
       </div>
 
     </div>
+
 
 
     <div class="stat">
@@ -604,6 +863,7 @@
     </div>
 
 
+
     <div class="stat">
 
       <div class="icon">
@@ -622,6 +882,7 @@
       </div>
 
     </div>
+
 
 
     <div class="stat">
@@ -646,11 +907,13 @@
   </div>
 
 
+
   <!-- =========================
        PROGRESS
   ========================== -->
 
   <div class="card">
+
 
     <div class="progress-info">
 
@@ -677,11 +940,38 @@
   </div>
 
 
+
+  <!-- =========================
+       DAILY TOTALS
+  ========================== -->
+
+  <div class="card">
+
+
+    <div class="section-title">
+
+      <h2>
+        📅 الزيادة حسب الأيام
+      </h2>
+
+    </div>
+
+
+    <div
+      class="days-list"
+      id="daysList"
+    ></div>
+
+  </div>
+
+
+
   <!-- =========================
        HISTORY
   ========================== -->
 
   <div class="card">
+
 
     <div class="section-title">
 
@@ -689,19 +979,22 @@
         📋 سجل الزيادات
       </h2>
 
+
       <button
         class="clear-btn"
         onclick="clearHistory()"
       >
+
         مسح السجل
+
       </button>
 
     </div>
 
 
+
     <div class="history">
 
-      <!-- عنوان الجدول -->
 
       <div class="history-header">
 
@@ -728,11 +1021,14 @@
       </div>
 
 
-      <div id="historyList"></div>
+      <div
+        id="historyList"
+      ></div>
 
     </div>
 
   </div>
+
 
 
   <!-- =========================
@@ -745,34 +1041,49 @@
       class="reset-btn"
       onclick="resetAll()"
     >
+
       إعادة ضبط النظام بالكامل
+
     </button>
 
   </div>
 
+
 </div>
 
 
+
 <script>
+
 
   /* =================================
      DATA
   ================================= */
 
   let data =
+
     JSON.parse(
       localStorage.getItem(
         "snapStreakData"
       )
     )
+
     ||
+
     {
+
       target: 0,
+
       current: 0,
+
       startingValue: 0,
+
       totalIncrease: 0,
+
       history: []
+
     };
+
 
 
   /* =================================
@@ -787,18 +1098,81 @@
   }
 
 
+
   /* =================================
-     SAVE DATA
+     SAVE
   ================================= */
 
   function saveData() {
 
     localStorage.setItem(
+
       "snapStreakData",
+
       JSON.stringify(data)
+
     );
 
   }
+
+
+
+  /* =================================
+     GET DAY KEY
+  ================================= */
+
+  function getDayKey(dateString) {
+
+    const date =
+      new Date(dateString);
+
+
+    const year =
+      date.getFullYear();
+
+
+    const month =
+      String(
+        date.getMonth() + 1
+      ).padStart(2,"0");
+
+
+    const day =
+      String(
+        date.getDate()
+      ).padStart(2,"0");
+
+
+    return `${year}-${month}-${day}`;
+
+  }
+
+
+
+  /* =================================
+     FORMAT DAY
+  ================================= */
+
+  function formatDay(dayKey) {
+
+    const date =
+      new Date(
+        dayKey + "T00:00:00"
+      );
+
+
+    return date.toLocaleDateString(
+      "ar-IQ",
+      {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      }
+    );
+
+  }
+
 
 
   /* =================================
@@ -806,6 +1180,7 @@
   ================================= */
 
   function render() {
+
 
     document.getElementById(
       "targetInput"
@@ -822,67 +1197,85 @@
     document.getElementById(
       "currentValue"
     ).textContent =
-      formatNumber(data.current);
+      formatNumber(
+        data.current
+      );
 
 
-    /*
-      آخر زيادة فقط
-    */
+    /* آخر زيادة */
 
-    const lastIncrease =
+    let lastIncrease = 0;
+
+
+    if (
       data.history.length > 1
-        ? data.history[0].increase
-        : 0;
+    ) {
+
+      lastIncrease =
+        data.history[0].increase;
+
+    }
 
 
     document.getElementById(
       "lastIncrease"
     ).textContent =
+
       lastIncrease > 0
-        ? "+" + formatNumber(lastIncrease)
+
+        ? "+" +
+          formatNumber(
+            lastIncrease
+          )
+
         : "0";
 
 
-    /*
-      المتبقي
-    */
+    /* المتبقي */
 
     const remaining =
+
       Math.max(
-        data.target - data.current,
+
+        data.target -
+        data.current,
+
         0
+
       );
 
 
     document.getElementById(
       "remainingValue"
     ).textContent =
-      formatNumber(remaining);
+      formatNumber(
+        remaining
+      );
 
 
-    /*
-      إجمالي الزيادة
-    */
+    /* إجمالي الزيادة */
 
     document.getElementById(
       "totalIncrease"
     ).textContent =
+
       "+" +
       formatNumber(
         data.totalIncrease
       );
 
 
-    /*
-      نسبة التقدم
-    */
+    /* التقدم */
 
     let percentage = 0;
 
 
-    if (data.target > 0) {
+    if (
+      data.target > 0
+    ) {
 
       percentage =
+
         (
           data.current /
           data.target
@@ -892,6 +1285,7 @@
 
 
     percentage =
+
       Math.min(
         percentage,
         100
@@ -901,14 +1295,20 @@
     document.getElementById(
       "progressPercent"
     ).textContent =
-      percentage.toFixed(1) + "%";
+
+      percentage.toFixed(1) +
+      "%";
 
 
     document.getElementById(
       "progressBar"
     ).style.width =
-      percentage + "%";
 
+      percentage +
+      "%";
+
+
+    renderDailyTotals();
 
     renderHistory();
 
@@ -917,13 +1317,16 @@
   }
 
 
+
   /* =================================
      ADD UPDATE
   ================================= */
 
   function updateStreak() {
 
+
     const target =
+
       Number(
         document.getElementById(
           "targetInput"
@@ -932,6 +1335,7 @@
 
 
     const newValue =
+
       Number(
         document.getElementById(
           "currentInput"
@@ -939,17 +1343,10 @@
       );
 
 
-    const message =
-      document.getElementById(
-        "message"
-      );
-
-
-    /*
-      تحقق من الهدف
-    */
-
-    if (!target || target <= 0) {
+    if (
+      !target ||
+      target <= 0
+    ) {
 
       showMessage(
         "⚠️ اكتب الهدف أولاً",
@@ -960,10 +1357,6 @@
 
     }
 
-
-    /*
-      تحقق من الرقم
-    */
 
     if (
       isNaN(newValue) ||
@@ -980,22 +1373,24 @@
     }
 
 
-    /*
-      أول تسجيل
-    */
+    /* أول تسجيل */
 
     if (
       data.history.length === 0
     ) {
 
+
       data.target =
         target;
+
 
       data.current =
         newValue;
 
+
       data.startingValue =
         newValue;
+
 
       data.totalIncrease =
         0;
@@ -1005,7 +1400,8 @@
 
         previous: 0,
 
-        current: newValue,
+        current:
+          newValue,
 
         increase: 0,
 
@@ -1019,11 +1415,11 @@
 
     }
 
-    /*
-      تحديث جديد
-    */
+
+    /* تحديث جديد */
 
     else {
+
 
       const previous =
         data.current;
@@ -1034,11 +1430,9 @@
         previous;
 
 
-      /*
-        لا يسمح بالنقصان
-      */
-
-      if (increase < 0) {
+      if (
+        increase < 0
+      ) {
 
         showMessage(
           "⚠️ الرقم الجديد أقل من الستريك السابق",
@@ -1052,6 +1446,7 @@
 
       data.target =
         target;
+
 
       data.current =
         newValue;
@@ -1085,7 +1480,7 @@
 
 
     showMessage(
-      "✅ تم تسجيل التحديث بنجاح",
+      "✅ تم تسجيل التحديث",
       "#36e38a"
     );
 
@@ -1095,7 +1490,11 @@
 
     setTimeout(
       () => {
-        message.textContent = "";
+
+        document.getElementById(
+          "message"
+        ).textContent = "";
+
       },
       2500
     );
@@ -1103,28 +1502,173 @@
   }
 
 
+
   /* =================================
-     MESSAGE
+     DAILY TOTALS
   ================================= */
 
-  function showMessage(
-    text,
-    color
-  ) {
+  function calculateDailyTotals() {
 
-    const message =
+
+    const days = {};
+
+
+    data.history.forEach(
+      item => {
+
+
+        /*
+          التسجيل الأول ليس زيادة
+        */
+
+        if (
+          item.first ||
+          item.increase <= 0
+        ) {
+
+          return;
+
+        }
+
+
+        const day =
+          getDayKey(
+            item.date
+          );
+
+
+        if (
+          !days[day]
+        ) {
+
+          days[day] = {
+
+            total: 0,
+
+            updates: 0
+
+          };
+
+        }
+
+
+        days[day].total +=
+          Number(
+            item.increase
+          );
+
+
+        days[day].updates++;
+
+      }
+    );
+
+
+    return days;
+
+  }
+
+
+
+  /* =================================
+     RENDER DAILY TOTALS
+  ================================= */
+
+  function renderDailyTotals() {
+
+
+    const list =
       document.getElementById(
-        "message"
+        "daysList"
       );
 
 
-    message.textContent =
-      text;
+    const days =
+      calculateDailyTotals();
 
-    message.style.color =
-      color;
+
+    const dayKeys =
+      Object.keys(days)
+        .sort()
+        .reverse();
+
+
+    if (
+      dayKeys.length === 0
+    ) {
+
+      list.innerHTML = `
+
+        <div class="empty">
+
+          لا توجد زيادات مسجلة بالأيام حتى الآن 📅
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    list.innerHTML =
+
+      dayKeys
+        .map(
+          day => {
+
+            return `
+
+              <div class="day-item">
+
+                <div>
+
+                  <div class="day-label">
+                    اليوم
+                  </div>
+
+                  <div class="day-date">
+                    ${formatDay(day)}
+                  </div>
+
+                </div>
+
+
+                <div>
+
+                  <div class="day-label">
+                    إجمالي الزيادة
+                  </div>
+
+                  <div class="day-value">
+                    +${formatNumber(
+                      days[day].total
+                    )}
+                  </div>
+
+                </div>
+
+
+                <div class="day-updates">
+
+                  📈 عدد التحديثات:
+                  <strong>
+                    ${days[day].updates}
+                  </strong>
+
+                </div>
+
+              </div>
+
+            `;
+
+          }
+        )
+        .join("");
 
   }
+
 
 
   /* =================================
@@ -1132,6 +1676,7 @@
   ================================= */
 
   function renderHistory() {
+
 
     const list =
       document.getElementById(
@@ -1144,9 +1689,13 @@
     ) {
 
       list.innerHTML = `
+
         <div class="empty">
+
           لا توجد تحديثات حتى الآن 🔥
+
         </div>
+
       `;
 
       return;
@@ -1155,9 +1704,11 @@
 
 
     list.innerHTML =
+
       data.history
         .map(
-          (item, index) => {
+          (item,index) => {
+
 
             const date =
               new Date(
@@ -1166,12 +1717,14 @@
 
 
             const formattedDate =
+
               date.toLocaleDateString(
                 "ar-IQ"
               );
 
 
             const formattedTime =
+
               date.toLocaleTimeString(
                 "ar-IQ",
                 {
@@ -1187,79 +1740,77 @@
                 class="history-item"
               >
 
+
                 <div
                   class="history-value"
                 >
-                  ${
-                    formatNumber(
-                      item.previous
-                    )
-                  }
+
+                  ${formatNumber(
+                    item.previous
+                  )}
 
                   →
 
-                  ${
-                    formatNumber(
-                      item.current
-                    )
-                  }
+                  ${formatNumber(
+                    item.current
+                  )}
+
                 </div>
 
 
                 <div>
-                  ${
-                    formatNumber(
-                      item.current
-                    )
-                  }
+
+                  ${formatNumber(
+                    item.current
+                  )}
+
                 </div>
 
 
                 <div
                   class="history-increase"
                 >
+
                   ${
                     item.first
+
                       ? "البداية"
+
                       : "+" +
                         formatNumber(
                           item.increase
                         )
                   }
+
                 </div>
 
 
                 <div
                   class="history-time"
                 >
-                  ${
-                    formattedDate
-                  }
+
+                  ${formattedDate}
 
                   <br>
 
-                  ${
-                    formattedTime
-                  }
+                  ${formattedTime}
+
                 </div>
 
 
-                <!--
-                  زر حذف هذا السجل فقط
-                -->
-
-                <div
-                  class="delete-cell"
-                >
+                <div>
 
                   <button
                     class="danger-btn"
                     onclick="deleteHistory(${index})"
                   >
+
                     🗑️ حذف
+
                   </button>
 
                 </div>
+
 
               </div>
 
@@ -1272,20 +1823,20 @@
   }
 
 
+
   /* =================================
-     DELETE ONE HISTORY ITEM
+     DELETE SINGLE RECORD
   ================================= */
 
   function deleteHistory(index) {
 
-    /*
-      تأكد أن السجل موجود
-    */
 
     if (
       !data.history[index]
     ) {
+
       return;
+
     }
 
 
@@ -1293,54 +1844,38 @@
       data.history[index];
 
 
-    /*
-      تأكيد الحذف
-    */
-
     const confirmed =
+
       confirm(
-        `حذف هذه الزيادة؟\n\n` +
-        `${formatNumber(item.previous)}` +
-        ` → ` +
-        `${formatNumber(item.current)}`
+
+        "هل تريد حذف هذا التحديث؟\n\n" +
+
+        formatNumber(
+          item.previous
+        )
+
+        +
+
+        " → "
+
+        +
+
+        formatNumber(
+          item.current
+        )
+
       );
 
 
     if (!confirmed) {
+
       return;
-    }
-
-
-    /*
-      إذا كان السجل المحذوف
-      عملية زيادة فعلية،
-      نطرح زيادته من الإجمالي.
-    */
-
-    if (!item.first) {
-
-      data.totalIncrease -=
-        item.increase;
 
     }
 
 
     /*
-      منع الإجمالي من النزول
-      تحت الصفر
-    */
-
-    if (
-      data.totalIncrease < 0
-    ) {
-
-      data.totalIncrease = 0;
-
-    }
-
-
-    /*
-      حذف العنصر المحدد فقط
+      حذف العنصر فقط
     */
 
     data.history.splice(
@@ -1350,64 +1885,41 @@
 
 
     /*
-      تحديث الستريك الحالي
-      بناءً على آخر سجل موجود
+      إعادة حساب كل البيانات
     */
 
-    if (
-      data.history.length > 0
-    ) {
+    recalculateData();
 
-      data.current =
-        data.history[0].current;
-
-    }
-
-    else {
-
-      data.current = 0;
-
-      data.startingValue = 0;
-
-    }
-
-
-    /*
-      إعادة حساب إجمالي الزيادات
-      من السجل نفسه للتأكد
-    */
-
-    recalculateTotal();
-
-
-    /*
-      إعادة الرسم والحفظ
-    */
 
     render();
 
 
     showMessage(
-      "🗑️ تم حذف السجل المحدد",
+      "🗑️ تم حذف التحديث",
       "#36e38a"
     );
 
   }
 
 
+
   /* =================================
-     RECALCULATE TOTAL
+     RECALCULATE DATA
   ================================= */
 
-  function recalculateTotal() {
+  function recalculateData() {
 
-    let total = 0;
+
+    let total =
+      0;
 
 
     data.history.forEach(
       item => {
 
-        if (!item.first) {
+        if (
+          !item.first
+        ) {
 
           total +=
             Number(
@@ -1423,23 +1935,53 @@
     data.totalIncrease =
       total;
 
+
+    /*
+      آخر تحديث موجود
+      هو الستريك الحالي
+    */
+
+    if (
+      data.history.length > 0
+    ) {
+
+      data.current =
+        data.history[0].current;
+
+    }
+
+    else {
+
+      data.current =
+        0;
+
+      data.startingValue =
+        0;
+
+    }
+
   }
 
 
+
   /* =================================
-     CLEAR ALL HISTORY
+     CLEAR HISTORY
   ================================= */
 
   function clearHistory() {
 
+
     const confirmed =
+
       confirm(
-        "هل أنت متأكد من حذف سجل الزيادات بالكامل؟"
+        "هل أنت متأكد من حذف السجل بالكامل؟"
       );
 
 
     if (!confirmed) {
+
       return;
+
     }
 
 
@@ -1457,20 +1999,27 @@
   }
 
 
+
   /* =================================
      RESET EVERYTHING
   ================================= */
 
   function resetAll() {
 
+
     const confirmed =
+
       confirm(
-        "سيتم حذف كل البيانات وإعادة النظام من البداية. هل أنت متأكد؟"
+
+        "سيتم حذف جميع البيانات وإعادة النظام من البداية. هل أنت متأكد؟"
+
       );
 
 
     if (!confirmed) {
+
       return;
+
     }
 
 
@@ -1499,15 +2048,45 @@
   }
 
 
+
   /* =================================
-     INITIAL LOAD
+     MESSAGE
+  ================================= */
+
+  function showMessage(
+    text,
+    color
+  ) {
+
+
+    const message =
+      document.getElementById(
+        "message"
+      );
+
+
+    message.textContent =
+      text;
+
+
+    message.style.color =
+      color;
+
+  }
+
+
+
+  /* =================================
+     START
   ================================= */
 
   render();
 
+
 </script>
 
+
 </body>
+
 </html>
 ```
-
